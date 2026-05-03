@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeaseNOI â Audit Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF; --bg2: #F5F4EE; --bg3: #ECEAE2; --border: #E0DED5;
+    --text: #1F1F1F; --text2: #5C5A52; --text3: #8A887E;
+    --accent: #185FA5; --accent-bg: #E6F1FB; --accent-border: #85B7EB;
+    --best-text: #0F6E56; --best-bg: #E5F5EE; --best-border: #1D9E75;
+    --above-text: #0F6E56; --above-bg: #E5F5EE; --above-border: #1D9E75;
+    --industry-text: #8A6A1F; --industry-bg: #FBF3DC; --industry-border: #E1B84B;
+    --under-text: #993C1D; --under-bg: #FAECE7; --under-border: #F0997B;
+    --radius-md: 8px; --radius-lg: 12px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--bg3); font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: var(--text); padding: 32px 16px 64px; line-height: 1.55; }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .hdr { padding: 28px 32px 22px; background: var(--bg2); border-bottom: 0.5px solid var(--border); }
+  .uplabel { font-size: 10px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.09em; margin: 0 0 8px; }
+  h1 { font-size: 26px; font-weight: 600; color: var(--text); margin: 0 0 6px; letter-spacing: -0.01em; }
+  .tagline { font-size: 14px; color: var(--text2); margin: 0; font-weight: 400; }
+  .summary-row { padding: 14px 32px; background: var(--bg); border-bottom: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .summary-count { font-size: 13px; color: var(--text); font-weight: 500; }
+  .summary-count strong { color: var(--accent); font-weight: 600; }
+  .summary-time { font-size: 12px; color: var(--text3); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { background: var(--bg2); font-size: 10px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.07em; text-align: left; padding: 11px 16px; border-bottom: 0.5px solid var(--border); white-space: nowrap; }
+  thead th.num { text-align: right; }
+  tbody td { padding: 14px 16px; border-bottom: 0.5px solid var(--border); color: var(--text); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--bg2); }
+  td.prop { font-weight: 500; color: var(--text); }
+  td.owner { color: var(--text2); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+  td.weak { color: var(--text2); }
+  td.date { color: var(--text2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  td.link a { color: var(--accent); text-decoration: none; font-weight: 500; white-space: nowrap; }
+  td.link a:hover { text-decoration: underline; }
+  td.empty { text-align: center; color: var(--text3); padding: 48px 16px; }
+  .tier-badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; border: 0.5px solid transparent; white-space: nowrap; letter-spacing: 0.01em; }
+  .tier-best  { background: var(--best-bg); color: var(--best-text); border-color: var(--best-border); }
+  .tier-above { background: var(--above-bg); color: var(--above-text); border-color: var(--above-border); }
+  .tier-industry { background: var(--industry-bg); color: var(--industry-text); border-color: var(--industry-border); }
+  .tier-under { background: var(--under-bg); color: var(--under-text); border-color: var(--under-border); }
+  .tier-unknown { background: var(--bg2); color: var(--text3); border-color: var(--border); }
+  .footer { padding: 18px 32px; background: var(--bg2); border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer p { margin: 0; font-size: 12px; color: var(--text2); }
+  .footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .footer a:hover { text-decoration: underline; }
+  @media (max-width: 720px) {
+    body { padding: 16px 8px 48px; }
+    .hdr { padding: 22px 20px 18px; }
+    .summary-row { padding: 12px 20px; }
+    h1 { font-size: 22px; }
+    thead th, tbody td { padding: 10px 12px; }
+    td.weak, th.weak-h { display: none; }
+    td.owner, th.owner-h { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="hdr">
+        <p class="uplabel">LeaseNOI Â· External Leasing Audits</p>
+        <h1>Audit Reports</h1>
+        <p class="tagline">Per-property responsiveness audits â comp-set ranked, three-engine diagnosed, NOI-quantified.</p>
+      </div>
+      <div class="summary-row">
+        <div class="summary-count"><strong>1</strong> report published</div>
+        <div class="summary-time">Last updated: 05/03/2026 UTC</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th class="owner-h">Owner</th>
+              <th class="num">Score</th>
+              <th>Tier</th>
+              <th class="weak-h">Engine Weakness</th>
+              <th>Published</th>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+      <tr>
+        <td class="prop">Camden Foothills Apartments</td>
+        <td class="owner">Camden Property Trust</td>
+        <td class="num">62.5</td>
+        <td><span class="tier-badge tier-above">Above Average</span></td>
+        <td class="weak">Sales Engine</td>
+        <td class="date">05/03/2026</td>
+        <td class="link"><a href="https://leasenoi-reports.github.io/leasenoi-reports/camden-foothills.html">View report â</a></td>
+      </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer">
+        <p>LeaseNOI â Continuous external leasing audits.</p>
+        <p><a href="https://leasenoi.com">leasenoi.com â</a></p>
+      </div>
+    </div>
+  </div>
+  <!-- Generated 2026-05-03T23:56:07.537Z Â· 1 reports -->
+</body>
+</html>
