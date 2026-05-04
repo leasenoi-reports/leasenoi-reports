@@ -21,7 +21,7 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body { background: var(--bg3); font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: var(--text); padding: 32px 16px 64px; line-height: 1.55; }
-  .wrap { max-width: 1080px; margin: 0 auto; }
+  .wrap { max-width: 1140px; margin: 0 auto; }
   .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
   .hdr { padding: 28px 32px 22px; background: var(--bg2); border-bottom: 0.5px solid var(--border); }
   .uplabel { font-size: 10px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.09em; margin: 0 0 8px; }
@@ -31,6 +31,8 @@
   .summary-count { font-size: 13px; color: var(--text); font-weight: 500; }
   .summary-count strong { color: var(--accent); font-weight: 600; }
   .summary-time { font-size: 12px; color: var(--text3); }
+  .methodology-note { padding: 14px 32px; background: var(--accent-bg); border-bottom: 0.5px solid var(--accent-border); font-size: 12px; color: var(--accent); line-height: 1.55; }
+  .methodology-note strong { font-weight: 600; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   thead th { background: var(--bg2); font-size: 10px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.07em; text-align: left; padding: 11px 16px; border-bottom: 0.5px solid var(--border); white-space: nowrap; }
   thead th.num { text-align: right; }
@@ -44,25 +46,21 @@
   td.date { color: var(--text2); white-space: nowrap; font-variant-numeric: tabular-nums; }
   td.link a { color: var(--accent); text-decoration: none; font-weight: 500; white-space: nowrap; }
   td.link a:hover { text-decoration: underline; }
-  td.empty { text-align: center; color: var(--text3); padding: 48px 16px; }
   .tier-badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; border: 0.5px solid transparent; white-space: nowrap; letter-spacing: 0.01em; }
   .tier-best  { background: var(--best-bg); color: var(--best-text); border-color: var(--best-border); }
   .tier-above { background: var(--above-bg); color: var(--above-text); border-color: var(--above-border); }
   .tier-industry { background: var(--industry-bg); color: var(--industry-text); border-color: var(--industry-border); }
   .tier-under { background: var(--under-bg); color: var(--under-text); border-color: var(--under-border); }
-  .tier-unknown { background: var(--bg2); color: var(--text3); border-color: var(--border); }
   .footer { padding: 18px 32px; background: var(--bg2); border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
   .footer p { margin: 0; font-size: 12px; color: var(--text2); }
   .footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
   .footer a:hover { text-decoration: underline; }
-  @media (max-width: 720px) {
+  @media (max-width: 880px) {
     body { padding: 16px 8px 48px; }
-    .hdr { padding: 22px 20px 18px; }
-    .summary-row { padding: 12px 20px; }
+    .hdr, .summary-row, .methodology-note { padding-left: 20px; padding-right: 20px; }
     h1 { font-size: 22px; }
     thead th, tbody td { padding: 10px 12px; }
-    td.weak, th.weak-h { display: none; }
-    td.owner, th.owner-h { display: none; }
+    td.weak, th.weak-h, td.owner, th.owner-h { display: none; }
   }
 </style>
 </head>
@@ -75,41 +73,64 @@
         <p class="tagline">Per-property responsiveness audits — comp-set ranked, three-engine diagnosed, NOI-quantified.</p>
       </div>
       <div class="summary-row">
-        <div class="summary-count"><strong>1</strong> report published</div>
+        <div class="summary-count"><strong>3</strong> reports published</div>
         <div class="summary-time">Last updated: 05/04/2026 UTC</div>
       </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th class="owner-h">Owner</th>
-              <th class="num">Score</th>
-              <th>Tier</th>
-              <th class="weak-h">Engine Weakness</th>
-              <th>Published</th>
-              <th>Report</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div class="methodology-note">
+        <strong>Methodology:</strong> Scores are computed against time to first <em>human</em> reply. Automated/bot acknowledgements (almost universal in the market) are excluded — the differentiator is whether a real leasing agent engages.
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th class="owner-h">Owner</th>
+            <th class="num">Score</th>
+            <th>Tier</th>
+            <th class="weak-h">Engine Weakness</th>
+            <th class="num">First Human Reply</th>
+            <th>Published</th>
+            <th>Report</th>
+          </tr>
+        </thead>
+        <tbody>
+      <tr>
+        <td class="prop">Aspendale Scottsdale</td>
+        <td class="owner">Headwaters Group</td>
+        <td class="num">70</td>
+        <td><span class="tier-badge tier-above">Above Average</span></td>
+        <td class="weak">Sales Engine</td>
+        <td class="num">30 min</td>
+        <td class="date">05/04/2026</td>
+        <td class="link"><a href="https://leasenoi-reports.github.io/leasenoi-reports/aspendale-scottsdale.html">View report →</a></td>
+      </tr>
+      <tr>
+        <td class="prop">IMT North Scottsdale</td>
+        <td class="owner">IMT Residential</td>
+        <td class="num">39</td>
+        <td><span class="tier-badge tier-under">Underperformer</span></td>
+        <td class="weak">Speed Engine</td>
+        <td class="num">22 hrs</td>
+        <td class="date">05/04/2026</td>
+        <td class="link"><a href="https://leasenoi-reports.github.io/leasenoi-reports/imt-north-scottsdale.html">View report →</a></td>
+      </tr>
       <tr>
         <td class="prop">Camden Foothills Apartments</td>
         <td class="owner">Camden Property Trust</td>
-        <td class="num">62.5</td>
-        <td><span class="tier-badge tier-above">Above Average</span></td>
-        <td class="weak">Sales Engine</td>
+        <td class="num">37.5</td>
+        <td><span class="tier-badge tier-under">Underperformer</span></td>
+        <td class="weak">Speed Engine</td>
+        <td class="num">16 hrs</td>
         <td class="date">05/03/2026</td>
         <td class="link"><a href="https://leasenoi-reports.github.io/leasenoi-reports/camden-foothills.html">View report →</a></td>
       </tr>
-          </tbody>
-        </table>
-      </div>
+        </tbody>
+      </table>
       <div class="footer">
         <p>LeaseNOI — Continuous external leasing audits.</p>
         <p><a href="https://leasenoi.com">leasenoi.com →</a></p>
       </div>
     </div>
   </div>
-  <!-- Generated 2026-05-04T00:07:15.534Z · 1 reports -->
+  <!-- Generated 2026-05-04T01:09:50.965Z · 3 reports -->
 </body>
 </html>
