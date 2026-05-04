@@ -6,21 +6,19 @@
 <title>Aspendale Scottsdale — LeaseNOI External Leasing Audit</title>
 <style>
   :root {
-    --bg: #FFFFFF;
-    --bg2: #F5F4EE;
-    --border: #E0DED5;
-    --text: #1F1F1F;
-    --text2: #5C5A52;
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --bg: #FFFFFF; --bg2: #F5F4EE; --border: #E0DED5;
+    --text: #1F1F1F; --text2: #5C5A52;
+    --accent: #185FA5; --accent-bg: #E6F1FB; --accent-border: #85B7EB;
+    --good: #0F6E56; --good-bg: #E5F5EE; --good-border: #1D9E75;
+    --warn: #993C1D; --warn-bg: #FAECE7; --warn-border: #F0997B;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px;
   }
   body { margin: 0; padding: 24px 16px; background: #ECEAE2; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: var(--text); }
   .report { max-width: 720px; margin: 0 auto; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 
-  .rpt-banner { padding: 16px 28px; background: #E6F1FB; border-bottom: 0.5px solid #85B7EB; }
-  .banner-title { font-size: 13px; font-weight: 500; color: #185FA5; margin: 0 0 4px; }
-  .banner-sub { font-size: 12px; color: #185FA5; margin: 0; line-height: 1.55; }
+  .rpt-banner { padding: 16px 28px; background: var(--accent-bg); border-bottom: 0.5px solid var(--accent-border); }
+  .banner-title { font-size: 13px; font-weight: 500; color: var(--accent); margin: 0 0 4px; }
+  .banner-sub { font-size: 12px; color: var(--accent); margin: 0; line-height: 1.55; }
 
   .rpt-header { padding: 22px 28px; background: var(--bg2); border-bottom: 0.5px solid var(--border); }
   .rpt-header-row { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap: wrap; }
@@ -32,14 +30,13 @@
 
   .tier-banner { padding: 18px 28px; border-bottom: 0.5px solid var(--border); background: var(--bg2); }
   .tier-row { display:flex; gap: 12px; align-items: stretch; }
-  .tier-cell { flex: 1; padding: 10px 12px; border-radius: var(--radius-md); background: var(--bg); border: 0.5px solid var(--border); text-align: center; position: relative; }
-  .tier-cell.active { border: 1px solid #185FA5; background: #E6F1FB; }
+  .tier-cell { flex: 1; padding: 10px 12px; border-radius: var(--radius-md); background: var(--bg); border: 0.5px solid var(--border); text-align: center; }
+  .tier-cell.active { border: 1px solid var(--accent); background: var(--accent-bg); }
   .tier-name { font-size: 11px; font-weight: 600; color: var(--text); margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.06em; }
   .tier-range { font-size: 11px; color: var(--text2); margin: 0; }
-  .tier-cell.active .tier-name { color: #185FA5; }
-  .tier-cell.active .tier-range { color: #185FA5; }
+  .tier-cell.active .tier-name, .tier-cell.active .tier-range { color: var(--accent); }
   .tier-dot { width: 8px; height: 8px; border-radius: 50%; background: transparent; display: inline-block; margin-right: 4px; vertical-align: middle; }
-  .tier-cell.active .tier-dot { background: #185FA5; }
+  .tier-cell.active .tier-dot { background: var(--accent); }
 
   .rpt-section { padding: 22px 28px; border-bottom: 0.5px solid var(--border); }
   .rpt-section:last-of-type { border-bottom: none; }
@@ -48,67 +45,86 @@
 
   .score-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .sc { padding: 13px 15px; border-radius: var(--radius-md); background: var(--bg2); border: 0.5px solid var(--border); }
-  .sc.alert { background: #FAECE7; border-color: #F0997B; }
-  .sc.good { background: #E5F5EE; border-color: #1D9E75; }
+  .sc.alert { background: var(--warn-bg); border-color: var(--warn-border); }
+  .sc.good { background: var(--good-bg); border-color: var(--good-border); }
   .sc-label { font-size: 11px; color: var(--text2); margin: 0 0 6px; }
-  .sc-label.alert { color: #993C1D; }
-  .sc-label.good { color: #0F6E56; }
+  .sc-label.alert { color: var(--warn); }
+  .sc-label.good { color: var(--good); }
   .sc-val { font-size: 18px; font-weight: 500; color: var(--text); margin: 0 0 4px; }
-  .sc-val.alert { color: #993C1D; }
-  .sc-val.good { color: #0F6E56; }
+  .sc-val.alert { color: var(--warn); }
+  .sc-val.good { color: var(--good); }
   .sc-sub { font-size: 11px; color: var(--text2); margin: 0; line-height: 1.4; }
-  .sc-sub.alert { color: #993C1D; }
-  .sc-sub.good { color: #0F6E56; }
+  .sc-sub.alert { color: var(--warn); }
+  .sc-sub.good { color: var(--good); }
 
-  .key-finding { margin-top: 16px; padding: 16px 18px; border-radius: var(--radius-md); background: #FAECE7; border: 0.5px solid #F0997B; }
-  .key-finding-title { font-size: 12px; font-weight: 600; color: #993C1D; margin: 0 0 6px; }
-  .key-finding-text { font-size: 12px; color: #993C1D; margin: 0; line-height: 1.6; }
+  .footnote { margin-top: 12px; padding: 10px 14px; border-radius: var(--radius-md); background: var(--bg2); border: 0.5px dashed var(--border); font-size: 11px; color: var(--text2); line-height: 1.55; }
+
+  .key-finding { margin-top: 16px; padding: 16px 18px; border-radius: var(--radius-md); background: var(--warn-bg); border: 0.5px solid var(--warn-border); }
+  .key-finding-title { font-size: 12px; font-weight: 600; color: var(--warn); margin: 0 0 6px; }
+  .key-finding-text { font-size: 12px; color: var(--warn); margin: 0; line-height: 1.6; }
 
   .engine-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .engine { padding: 14px 15px; border-radius: var(--radius-md); border: 0.5px solid var(--border); background: var(--bg2); }
-  .engine.weakness { border-color: #F0997B; background: #FAECE7; }
+  .engine.weakness { border-color: var(--warn-border); background: var(--warn-bg); }
   .engine-name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin: 0 0 4px; }
-  .engine.weakness .engine-name { color: #993C1D; }
+  .engine.weakness .engine-name { color: var(--warn); }
   .engine-score { font-size: 20px; font-weight: 500; color: var(--text); margin: 0 0 6px; }
-  .engine.weakness .engine-score { color: #993C1D; }
+  .engine.weakness .engine-score { color: var(--warn); }
   .engine-diag { font-size: 11px; color: var(--text2); line-height: 1.55; margin: 0; }
-  .engine.weakness .engine-diag { color: #993C1D; }
+  .engine.weakness .engine-diag { color: var(--warn); }
 
   .rank-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
-  .rank-name { font-size: 12px; color: var(--text2); width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .rank-name.subject { color: #D85A30; font-weight: 500; }
-  .rank-name.top { color: #0F6E56; }
+  .rank-name { font-size: 12px; color: var(--text2); width: 200px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank-name.subject { color: var(--warn); font-weight: 500; }
+  .rank-name.top { color: var(--good); }
   .rank-bg { flex: 1; height: 16px; background: var(--bg2); border-radius: 3px; overflow: hidden; }
   .rank-fill { height: 100%; border-radius: 3px; background: #B4B2A9; }
   .rank-fill.subject { background: #D85A30; }
-  .rank-fill.top { background: #1D9E75; }
-  .rank-time { font-size: 12px; color: var(--text2); width: 70px; text-align: right; flex-shrink: 0; }
-  .rank-time.subject { color: #D85A30; font-weight: 500; }
+  .rank-fill.top { background: var(--good-border); }
+  .rank-fill.none { background: repeating-linear-gradient(45deg, var(--warn-bg), var(--warn-bg) 4px, var(--bg2) 4px, var(--bg2) 8px); }
+  .rank-time { font-size: 12px; color: var(--text2); width: 90px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .rank-time.subject { color: var(--warn); font-weight: 500; }
+  .rank-time.none { color: var(--warn); font-style: italic; }
 
   .losing-list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
   .losing { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: var(--radius-md); background: var(--bg2); }
-  .losing-title { font-size: 12px; font-weight: 600; color: #993C1D; margin: 0 0 4px; }
+  .losing-title { font-size: 12px; font-weight: 600; color: var(--warn); margin: 0 0 4px; }
   .losing-desc { font-size: 12px; color: var(--text2); margin: 0; line-height: 1.55; }
 
+  .noi-headline { padding: 16px 18px; border-radius: var(--radius-md); background: var(--accent-bg); border: 0.5px solid var(--accent-border); margin-bottom: 18px; }
+  .noi-headline-text { font-size: 14px; color: var(--accent); margin: 0; line-height: 1.55; }
+  .noi-assumptions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .noi-a { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 12px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius-md); font-size: 12px; }
+  .noi-a-label { color: var(--text2); }
+  .noi-a-val { color: var(--text); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .noi-math { border: 0.5px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+  .noi-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap: 12px; padding: 10px 14px; font-size: 12px; border-bottom: 0.5px solid var(--border); align-items: center; font-variant-numeric: tabular-nums; }
+  .noi-row:last-child { border-bottom: none; }
+  .noi-row-head { background: var(--bg2); font-size: 10px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; }
+  .noi-row > span:first-child { color: var(--text); font-weight: 500; }
+  .noi-row > span:not(:first-child) { color: var(--text2); }
+  .noi-row-head > span { color: var(--text2); font-weight: 600; }
+  .noi-row-delta { background: var(--accent-bg); }
+  .noi-row-delta > span { color: var(--accent) !important; font-weight: 600; }
   .noi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .noi-c { padding: 13px 15px; border-radius: var(--radius-md); background: var(--bg2); border: 0.5px solid var(--border); }
-  .noi-c.hl { background: #E6F1FB; border-color: #85B7EB; }
+  .noi-c.hl { background: var(--accent-bg); border-color: var(--accent-border); }
   .noi-label { font-size: 11px; color: var(--text2); margin: 0 0 5px; }
-  .noi-label.hl { color: #185FA5; }
-  .noi-val { font-size: 18px; font-weight: 500; color: var(--text); margin: 0; }
-  .noi-val.hl { color: #185FA5; }
+  .noi-label.hl { color: var(--accent); }
+  .noi-val { font-size: 18px; font-weight: 500; color: var(--text); margin: 0; font-variant-numeric: tabular-nums; }
+  .noi-val.hl { color: var(--accent); }
   .noi-note { font-size: 11px; color: var(--text2); margin: 12px 0 0; line-height: 1.55; }
 
   .rpt-footer { padding: 18px 28px; background: var(--bg2); border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .footer-cta { font-size: 12px; font-weight: 500; color: #fff; background: #185FA5; border: 0.5px solid #185FA5; border-radius: var(--radius-md); padding: 8px 16px; white-space: nowrap; cursor: pointer; text-decoration: none; }
+  .footer-cta { font-size: 12px; font-weight: 500; color: #fff; background: var(--accent); border: 0.5px solid var(--accent); border-radius: var(--radius-md); padding: 8px 16px; white-space: nowrap; cursor: pointer; text-decoration: none; }
 </style>
 </head>
 <body>
 <div class="report">
 
   <div class="rpt-banner">
-    <p class="banner-title">We tested Aspendale Scottsdale as a prospective renter in April 2026.</p>
-    <p class="banner-sub">This report was generated by LeaseNOI following a blind inquiry test conducted in April 2026. Response data reflects real leasing team behavior.</p>
+    <p class="banner-title">We tested Aspendale Scottsdale as a prospective renter in 04/15/2026.</p>
+    <p class="banner-sub">This is a lightweight initial benchmark based on limited external testing — not a full continuous audit. The metrics below are scored against the time to first HUMAN response, not the automated acknowledgement.</p>
   </div>
 
   <div class="rpt-header">
@@ -120,7 +136,7 @@
       </div>
       <div class="right">
         <p class="uplabel">Market tested</p>
-        <p style="font-size:13px;font-weight:500;color:var(--text);margin:0;">Scottsdale, AZ</p>
+        <p style="font-size:13px;font-weight:500;color:var(--text);margin:0;">Greater Phoenix · North Scottsdale</p>
         <p style="font-size:12px;color:var(--text2);margin:3px 0 0;">14 properties benchmarked</p>
       </div>
     </div>
@@ -149,82 +165,107 @@
   </div>
 
   <div class="rpt-section">
-    <p class="sec-label">Overall leasing performance</p>
+    <p class="sec-label">Overall leasing performance — first human response</p>
     <div class="score-grid">
       <div class="sc">
-        <p class="sc-label">Market rank</p>
-        <p class="sc-val">#1 of 14</p>
-        <p class="sc-sub">Above 100% of comparable properties tested</p>
+        <p class="sc-label">Market rank (human response)</p>
+        <p class="sc-val">#6 of 14</p>
+        <p class="sc-sub">Above 62% of comp set</p>
       </div>
       <div class="sc">
-        <p class="sc-label">Avg response time</p>
-        <p class="sc-val">1 min</p>
-        <p class="sc-sub">Market avg: 19 hrs</p>
+        <p class="sc-label">Time to first human reply</p>
+        <p class="sc-val">30 min</p>
+        <p class="sc-sub">Market avg: 11 hrs</p>
       </div>
       <div class="sc">
-        <p class="sc-label">Best in market</p>
+        <p class="sc-label">Best in market (human)</p>
         <p class="sc-val">1 min</p>
         <p class="sc-sub">Top quartile: under 1 min</p>
       </div>
     </div>
 
+    <div class="footnote">
+      <strong>Why first-human time?</strong> An automated acknowledgement arrived within minutes (most properties have one), but the first reply from an actual human took 30 min. We measure first-human time because automation is now ubiquitous — the differentiator is whether a real person engages.
+    </div>
+
     <div class="key-finding">
-      <p class="key-finding-title">Ranked #1 in Market, But Sales Engine Leaves Leases Behind</p>
-      <p class="key-finding-text">Aspendale Scottsdale scored 70 out of 100, ranking first of 14 properties in the Scottsdale comp set. The Speed Engine (35/40) and Nurture Engine (15/20) both performed well. The Sales Engine scored 20 out of 40, representing 50% of available points, and is the primary weakness suppressing overall performance.</p>
+      <p class="key-finding-title">Sales Engine Weakness Limits Conversion Despite Solid Speed and Nurture Scores</p>
+      <p class="key-finding-text">Aspendale Scottsdale scored 70/100 (Above Average), but the Sales Engine is the primary weakness at 50%, driven by low personal engagement and a single tour push across the test period. Five direct competitors answered with a human agent within 1 minute, creating a meaningful conversion gap.</p>
     </div>
   </div>
 
   <div class="rpt-section">
     <p class="sec-label">Three-layer engine diagnosis</p>
-    <p class="section-note">Each leasing engine is scored independently. The weakest engine drives the largest NOI gap.</p>
+    <p class="section-note">Each leasing engine is scored independently. The Speed Engine is scored against time to first <em>human</em> reply, not the automated acknowledgement.</p>
     <div class="engine-grid">
       <div class="engine ">
         <p class="engine-name">Speed Engine</p>
         <p class="engine-score">35 / 40</p>
-        <p class="engine-diag">The Speed Engine scored 35 out of 40, reaching 87.5% of available points and represents the strongest engine in this audit. An automated Entrata guest card confirmation was delivered in 1 minute, matching the best response time observed across the comp set. Gabby's first human response followed at approximately 30 minutes via Google Voice text message.</p>
+        <p class="engine-diag">The first human reply arrived at 30 minutes — not the bot acknowledgement, which is near-instant and non-differentiating. That 30-minute human response time ranks 6th in the 14-property comp set, trailing five competitors who each connected a live agent within 1 minute.</p>
       </div>
       <div class="engine weakness">
         <p class="engine-name">Sales Engine</p>
         <p class="engine-score">20 / 40</p>
-        <p class="engine-diag">The Sales Engine scored 20 out of 40, the lowest of the three engines and the primary weakness identified in this audit. Gabby's first human contact via Google Voice text introduced herself and noted limited availability but did not include a tour push. The single tour push observed in the full sequence was vague, with no specific date or time offered, and personal engagement scored 10 out of 25.</p>
+        <p class="engine-diag">The Sales Engine scored 20/40 (50%), reflecting weak personal engagement and a single tour push during the test period. This is the property's primary weakness and the area with the greatest opportunity to improve overall conversion.</p>
       </div>
       <div class="engine ">
         <p class="engine-name">Nurture Engine</p>
         <p class="engine-score">15 / 20</p>
-        <p class="engine-diag">The Nurture Engine scored 15 out of 20, reaching 75% of available points. Followup persistence earned full marks at 15 out of 15, with 12 total followups delivered across 6 automated and 6 personal contacts at an average cadence of 34 hours. Followup reply engagement scored 0 out of 5 because no prospect reply was received to any contact in the sequence.</p>
+        <p class="engine-diag">Aspendale sent 12 total follow-ups — 6 automated and 6 personal — at an average cadence of 34.31 hours, earning 75% on the Nurture Engine. However, the team did not reply to a direct follow-up question, limiting reply engagement marks.</p>
       </div>
     </div>
   </div>
 
   <div class="rpt-section">
-    <p class="sec-label">Response time — comp set</p>
-    <p class="section-note">Tested against 14 Class A multifamily properties in the Scottsdale market. Response monitoring conducted April 2026.</p>
-    <div class="rank-row"><span class="rank-name subject">Aspendale Scottsdale</span><div class="rank-bg"><div class="rank-fill subject" style="width:20%"></div></div><span class="rank-time subject">1 min</span></div>
-    <div class="rank-row"><span class="rank-name ">Kota North Scottsdale</span><div class="rank-bg"><div class="rank-fill " style="width:20%"></div></div><span class="rank-time ">1 min</span></div>
-    <div class="rank-row"><span class="rank-name ">The Beverly</span><div class="rank-bg"><div class="rank-fill " style="width:20%"></div></div><span class="rank-time ">1 min</span></div>
-    <div class="rank-row"><span class="rank-name ">San Portales</span><div class="rank-bg"><div class="rank-fill " style="width:20%"></div></div><span class="rank-time ">1 min</span></div>
-    <div class="rank-row"><span class="rank-name ">Camden Foothills Apartments</span><div class="rank-bg"><div class="rank-fill " style="width:20%"></div></div><span class="rank-time ">1 min</span></div>
+    <p class="sec-label">Time to first human reply — comp set</p>
+    <p class="section-note">14 properties tested in the comp set. Ranked by time to first reply from an actual human (not an automated acknowledgement). Subject property highlighted.</p>
+    <div class="rank-row"><span class="rank-name top">Vitri Apartments</span><div class="rank-bg"><div class="rank-fill top" style="width:5%"></div></div><span class="rank-time ">1 min</span></div>
+    <div class="rank-row"><span class="rank-name ">The Beverly</span><div class="rank-bg"><div class="rank-fill " style="width:5%"></div></div><span class="rank-time ">1 min</span></div>
+    <div class="rank-row"><span class="rank-name ">Kota North Scottsdale</span><div class="rank-bg"><div class="rank-fill " style="width:5%"></div></div><span class="rank-time ">1 min</span></div>
+    <div class="rank-row"><span class="rank-name ">Broadstone Scottsdale Quarter</span><div class="rank-bg"><div class="rank-fill " style="width:5%"></div></div><span class="rank-time ">1 min</span></div>
+    <div class="rank-row"><span class="rank-name subject">Aspendale Scottsdale</span><div class="rank-bg"><div class="rank-fill subject" style="width:100%"></div></div><span class="rank-time subject">30 min</span></div>
   </div>
 
   <div class="rpt-section">
     <p class="sec-label">Where you're losing leases</p>
     <p class="section-note">Specific gaps observed during testing. Each item is grounded in measured behavior, not inferred.</p>
     <ul class="losing-list">
-      <li class="losing"><p class="losing-title">No Tour Push in First Human Contact</p><p class="losing-desc">Gabby's first human text message introduced herself and noted unit availability but did not include any tour invitation. The one tour push observed later in the sequence offered no specific date or time, reducing its effectiveness as a conversion prompt.</p></li>
-      <li class="losing"><p class="losing-title">Weak Personal Engagement Limiting Conversion Opportunities</p><p class="losing-desc">Personal engagement scored 10 out of 25, the lowest sub-score in the audit. The observed human outreach was conducted via informal text message and did not include conversion-oriented language or a structured call to action.</p></li>
-      <li class="losing"><p class="losing-title">Zero Prospect Replies Across All Followups</p><p class="losing-desc">No prospect reply was received to any of the 12 followups sent across the sequence. This indicates the followup content is not prompting engagement, despite consistent outreach volume and cadence.</p></li>
+      <li class="losing"><p class="losing-title">Five Competitors Answered in 1 Minute; Aspendale Took 30</p><p class="losing-desc">Five comp-set properties — Vitri, The Beverly, Kota, Broadstone Scottsdale Quarter, and The District — each delivered a human reply within 1 minute. Aspendale's 30-minute human response time trails that benchmark by a wide margin, giving faster competitors first-mover advantage.</p></li>
+      <li class="losing"><p class="losing-title">Only One Tour Push Detected — Sales Conversion Left on the Table</p><p class="losing-desc">Aspendale recorded only one tour push during the test period. Low tour-push frequency is a direct contributor to the 50% Sales Engine score and represents a clear gap in converting prospect interest into scheduled visits.</p></li>
+      <li class="losing"><p class="losing-title">No Reply to Prospect Follow-Up Question — Engagement Gap Confirmed</p><p class="losing-desc">When a follow-up question was submitted during testing, Aspendale did not reply. Failing to respond to a direct prospect inquiry signals disengagement and risks losing renters who expect two-way dialogue before committing to a tour.</p></li>
     </ul>
   </div>
 
   <div class="rpt-section">
-    <p class="sec-label">Estimated NOI impact — 171 units</p>
-    <p class="section-note">Based on observed response gaps versus market benchmarks, this is the directional financial impact associated with the current performance gap.</p>
-    <div class="noi-grid">
-      <div class="noi-c"><p class="noi-label">Annual NOI opportunity</p><p class="noi-val">$106,020</p></div>
-      <div class="noi-c"><p class="noi-label">Per-unit lift</p><p class="noi-val">$620</p></div>
-      <div class="noi-c hl"><p class="noi-label hl">Asset value impact @ 6% cap</p><p class="noi-val hl">$1,767,000</p></div>
+    <p class="sec-label">NOI impact — 171 units</p>
+    <div class="noi-headline">
+      <p class="noi-headline-text"><strong>+200 bps conversion improvement = $46800 annual NOI / $780000 asset value at 6% cap.</strong></p>
     </div>
-    <p class="noi-note">Based on 171 units, $1,300 average rent, an 8% → 10% conversion lift on captured inquiries, and approximately $31,000 incremental NOI per converted unit. Asset value impact uses a 6% cap rate. Conservative, market-based assumptions.</p>
+
+    <p class="sec-label" style="margin-top:18px;">Assumptions</p>
+    <div class="noi-assumptions">
+      <div class="noi-a"><span class="noi-a-label">Conversion</span><span class="noi-a-val">8% → 10%</span></div>
+      <div class="noi-a"><span class="noi-a-label">Occupancy</span><span class="noi-a-val">92% → 93.5%</span></div>
+      <div class="noi-a"><span class="noi-a-label">Leasing speed gain</span><span class="noi-a-val">+18%</span></div>
+      <div class="noi-a"><span class="noi-a-label">Avg rent</span><span class="noi-a-val">$1300/mo</span></div>
+    </div>
+
+    <p class="sec-label" style="margin-top:18px;">The math</p>
+    <div class="noi-math">
+      <div class="noi-row noi-row-head"><span>Scenario</span><span>Occupied</span><span>Vacant</span><span>Annual vacancy loss</span></div>
+      <div class="noi-row"><span>Baseline (92%)</span><span>157</span><span>14</span><span>$218400</span></div>
+      <div class="noi-row"><span>Improved (93.5%)</span><span>160</span><span>11</span><span>$171600</span></div>
+      <div class="noi-row noi-row-delta"><span>Difference</span><span>+3</span><span>−3</span><span>$46800</span></div>
+    </div>
+
+    <p class="sec-label" style="margin-top:18px;">Asset value sensitivity</p>
+    <div class="noi-grid">
+      <div class="noi-c hl"><p class="noi-label hl">@ 6% cap (primary)</p><p class="noi-val hl">$780000</p></div>
+      <div class="noi-c"><p class="noi-label">@ 5% cap (sensitivity)</p><p class="noi-val">$936000</p></div>
+      <div class="noi-c"><p class="noi-label">Annual NOI gain</p><p class="noi-val">$46800</p></div>
+    </div>
+
+    <p class="noi-note">Conservative middle-of-the-market assumptions. No rent growth, no cost cuts assumed — this is purely better operations on the existing property.</p>
   </div>
 
   <div class="rpt-footer">
