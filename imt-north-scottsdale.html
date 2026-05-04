@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IMT North Scottsdale — LeaseNOI External Leasing Audit</title>
 <style>
   :root {
@@ -117,6 +117,38 @@
 
   .rpt-footer { padding: 18px 28px; background: var(--bg2); border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .footer-cta { font-size: 12px; font-weight: 500; color: #fff; background: var(--accent); border: 0.5px solid var(--accent); border-radius: var(--radius-md); padding: 8px 16px; white-space: nowrap; cursor: pointer; text-decoration: none; }
+
+  @media (max-width: 720px) {
+    body { padding: 12px 8px; }
+    .report { max-width: 100%; border-radius: var(--radius-md); }
+    .rpt-banner, .rpt-header, .tier-banner, .rpt-section, .rpt-footer { padding-left: 16px; padding-right: 16px; }
+    .rpt-header-row { display: block; }
+    .rpt-header .right { text-align: left; margin-top: 14px; }
+    .rpt-header h1 { font-size: 20px; line-height: 1.2; }
+    .banner-title { font-size: 12px; }
+    .banner-sub, .section-note, .key-finding-text, .noi-note { font-size: 11px; }
+    .score-grid, .engine-grid, .noi-grid, .noi-assumptions { grid-template-columns: 1fr; }
+    .sc-val, .noi-val { font-size: 16px; }
+    .engine-score { font-size: 18px; }
+    .tier-row { gap: 6px; }
+    .tier-cell { padding: 7px 5px; }
+    .tier-name { font-size: 9px; letter-spacing: 0.03em; }
+    .tier-range { font-size: 10px; }
+    .tier-dot { width: 6px; height: 6px; margin-right: 2px; }
+    .rank-row { align-items: flex-start; gap: 6px; }
+    .rank-name { width: 108px; white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.25; font-size: 11px; }
+    .rank-time { width: 72px; font-size: 11px; }
+    .rank-bg { min-width: 58px; height: 14px; margin-top: 2px; }
+    .noi-headline-text { font-size: 13px; }
+    .noi-a { display: block; }
+    .noi-a-label, .noi-a-val { display: block; }
+    .noi-a-val { margin-top: 2px; }
+    .noi-math { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .noi-row { min-width: 520px; grid-template-columns: 1.35fr .75fr .75fr 1.35fr; padding: 9px 10px; }
+    h1 { font-size: 20px; }
+    h2 { font-size: 17px; }
+  }
+
 </style>
 </head>
 <body>
@@ -239,7 +271,7 @@
   <div class="rpt-section">
     <p class="sec-label">NOI impact — 240 units</p>
     <div class="noi-headline">
-      <p class="noi-headline-text"><strong>+200 bps conversion improvement = $46800 annual NOI / $780000 asset value at 6% cap.</strong></p>
+      <p class="noi-headline-text"><strong>+200 bps conversion improvement = $46,800 annual NOI / $780,000 asset value at 6% cap.</strong></p>
     </div>
 
     <p class="sec-label" style="margin-top:18px;">Assumptions</p>
@@ -247,22 +279,22 @@
       <div class="noi-a"><span class="noi-a-label">Conversion</span><span class="noi-a-val">8% → 10%</span></div>
       <div class="noi-a"><span class="noi-a-label">Occupancy</span><span class="noi-a-val">92% → 93.5%</span></div>
       <div class="noi-a"><span class="noi-a-label">Leasing speed gain</span><span class="noi-a-val">+18%</span></div>
-      <div class="noi-a"><span class="noi-a-label">Avg rent</span><span class="noi-a-val">$1300/mo</span></div>
+      <div class="noi-a"><span class="noi-a-label">Avg rent</span><span class="noi-a-val">$1,300/mo</span></div>
     </div>
 
     <p class="sec-label" style="margin-top:18px;">The math</p>
     <div class="noi-math">
       <div class="noi-row noi-row-head"><span>Scenario</span><span>Occupied</span><span>Vacant</span><span>Annual vacancy loss</span></div>
-      <div class="noi-row"><span>Baseline (92%)</span><span>221</span><span>19</span><span>$296400</span></div>
-      <div class="noi-row"><span>Improved (93.5%)</span><span>224</span><span>16</span><span>$249600</span></div>
-      <div class="noi-row noi-row-delta"><span>Difference</span><span>+3</span><span>−3</span><span>$46800</span></div>
+      <div class="noi-row"><span>Baseline (92%)</span><span>221</span><span>19</span><span>$296,400</span></div>
+      <div class="noi-row"><span>Improved (93.5%)</span><span>224</span><span>16</span><span>$249,600</span></div>
+      <div class="noi-row noi-row-delta"><span>Difference</span><span>+3</span><span>−3</span><span>$46,800</span></div>
     </div>
 
     <p class="sec-label" style="margin-top:18px;">Asset value sensitivity</p>
     <div class="noi-grid">
-      <div class="noi-c hl"><p class="noi-label hl">@ 6% cap (primary)</p><p class="noi-val hl">$780000</p></div>
-      <div class="noi-c"><p class="noi-label">@ 5% cap (sensitivity)</p><p class="noi-val">$936000</p></div>
-      <div class="noi-c"><p class="noi-label">Annual NOI gain</p><p class="noi-val">$46800</p></div>
+      <div class="noi-c hl"><p class="noi-label hl">@ 6% cap (primary)</p><p class="noi-val hl">$780,000</p></div>
+      <div class="noi-c"><p class="noi-label">@ 5% cap (sensitivity)</p><p class="noi-val">$936,000</p></div>
+      <div class="noi-c"><p class="noi-label">Annual NOI gain</p><p class="noi-val">$46,800</p></div>
     </div>
 
     <p class="noi-note">Conservative middle-of-the-market assumptions. No rent growth, no cost cuts assumed — this is purely better operations on the existing property.</p>
