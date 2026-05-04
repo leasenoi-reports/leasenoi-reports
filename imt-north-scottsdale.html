@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMT North Scottsdale â LeaseNOI External Leasing Audit</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg2: #F5F4EE;
+    --border: #E0DED5;
+    --text: #1F1F1F;
+    --text2: #5C5A52;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+  body { margin: 0; padding: 24px 16px; background: #ECEAE2; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; color: var(--text); }
+  .report { max-width: 720px; margin: 0 auto; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+
+  .rpt-banner { padding: 16px 28px; background: #E6F1FB; border-bottom: 0.5px solid #85B7EB; }
+  .banner-title { font-size: 13px; font-weight: 500; color: #185FA5; margin: 0 0 4px; }
+  .banner-sub { font-size: 12px; color: #185FA5; margin: 0; line-height: 1.55; }
+
+  .rpt-header { padding: 22px 28px; background: var(--bg2); border-bottom: 0.5px solid var(--border); }
+  .rpt-header-row { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap: wrap; }
+  .rpt-header h1 { font-size: 22px; font-weight: 500; color: var(--text); margin: 0 0 4px; }
+  .rpt-header .meta { font-size: 13px; color: var(--text2); margin: 0; }
+  .rpt-header .right { text-align: right; }
+  .rpt-header .right p { margin: 0; }
+  .uplabel { font-size: 10px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.09em; margin: 0 0 7px; }
+
+  .tier-banner { padding: 18px 28px; border-bottom: 0.5px solid var(--border); background: var(--bg2); }
+  .tier-row { display:flex; gap: 12px; align-items: stretch; }
+  .tier-cell { flex: 1; padding: 10px 12px; border-radius: var(--radius-md); background: var(--bg); border: 0.5px solid var(--border); text-align: center; position: relative; }
+  .tier-cell.active { border: 1px solid #185FA5; background: #E6F1FB; }
+  .tier-name { font-size: 11px; font-weight: 600; color: var(--text); margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .tier-range { font-size: 11px; color: var(--text2); margin: 0; }
+  .tier-cell.active .tier-name { color: #185FA5; }
+  .tier-cell.active .tier-range { color: #185FA5; }
+  .tier-dot { width: 8px; height: 8px; border-radius: 50%; background: transparent; display: inline-block; margin-right: 4px; vertical-align: middle; }
+  .tier-cell.active .tier-dot { background: #185FA5; }
+
+  .rpt-section { padding: 22px 28px; border-bottom: 0.5px solid var(--border); }
+  .rpt-section:last-of-type { border-bottom: none; }
+  .sec-label { font-size: 10px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.09em; margin: 0 0 14px; }
+  .section-note { font-size: 12px; color: var(--text2); margin: 0 0 14px; line-height: 1.55; }
+
+  .score-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .sc { padding: 13px 15px; border-radius: var(--radius-md); background: var(--bg2); border: 0.5px solid var(--border); }
+  .sc.alert { background: #FAECE7; border-color: #F0997B; }
+  .sc.good { background: #E5F5EE; border-color: #1D9E75; }
+  .sc-label { font-size: 11px; color: var(--text2); margin: 0 0 6px; }
+  .sc-label.alert { color: #993C1D; }
+  .sc-label.good { color: #0F6E56; }
+  .sc-val { font-size: 18px; font-weight: 500; color: var(--text); margin: 0 0 4px; }
+  .sc-val.alert { color: #993C1D; }
+  .sc-val.good { color: #0F6E56; }
+  .sc-sub { font-size: 11px; color: var(--text2); margin: 0; line-height: 1.4; }
+  .sc-sub.alert { color: #993C1D; }
+  .sc-sub.good { color: #0F6E56; }
+
+  .key-finding { margin-top: 16px; padding: 16px 18px; border-radius: var(--radius-md); background: #FAECE7; border: 0.5px solid #F0997B; }
+  .key-finding-title { font-size: 12px; font-weight: 600; color: #993C1D; margin: 0 0 6px; }
+  .key-finding-text { font-size: 12px; color: #993C1D; margin: 0; line-height: 1.6; }
+
+  .engine-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .engine { padding: 14px 15px; border-radius: var(--radius-md); border: 0.5px solid var(--border); background: var(--bg2); }
+  .engine.weakness { border-color: #F0997B; background: #FAECE7; }
+  .engine-name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin: 0 0 4px; }
+  .engine.weakness .engine-name { color: #993C1D; }
+  .engine-score { font-size: 20px; font-weight: 500; color: var(--text); margin: 0 0 6px; }
+  .engine.weakness .engine-score { color: #993C1D; }
+  .engine-diag { font-size: 11px; color: var(--text2); line-height: 1.55; margin: 0; }
+  .engine.weakness .engine-diag { color: #993C1D; }
+
+  .rank-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .rank-name { font-size: 12px; color: var(--text2); width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank-name.subject { color: #D85A30; font-weight: 500; }
+  .rank-name.top { color: #0F6E56; }
+  .rank-bg { flex: 1; height: 16px; background: var(--bg2); border-radius: 3px; overflow: hidden; }
+  .rank-fill { height: 100%; border-radius: 3px; background: #B4B2A9; }
+  .rank-fill.subject { background: #D85A30; }
+  .rank-fill.top { background: #1D9E75; }
+  .rank-time { font-size: 12px; color: var(--text2); width: 70px; text-align: right; flex-shrink: 0; }
+  .rank-time.subject { color: #D85A30; font-weight: 500; }
+
+  .losing-list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .losing { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: var(--radius-md); background: var(--bg2); }
+  .losing-title { font-size: 12px; font-weight: 600; color: #993C1D; margin: 0 0 4px; }
+  .losing-desc { font-size: 12px; color: var(--text2); margin: 0; line-height: 1.55; }
+
+  .noi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .noi-c { padding: 13px 15px; border-radius: var(--radius-md); background: var(--bg2); border: 0.5px solid var(--border); }
+  .noi-c.hl { background: #E6F1FB; border-color: #85B7EB; }
+  .noi-label { font-size: 11px; color: var(--text2); margin: 0 0 5px; }
+  .noi-label.hl { color: #185FA5; }
+  .noi-val { font-size: 18px; font-weight: 500; color: var(--text); margin: 0; }
+  .noi-val.hl { color: #185FA5; }
+  .noi-note { font-size: 11px; color: var(--text2); margin: 12px 0 0; line-height: 1.55; }
+
+  .rpt-footer { padding: 18px 28px; background: var(--bg2); border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .footer-cta { font-size: 12px; font-weight: 500; color: #fff; background: #185FA5; border: 0.5px solid #185FA5; border-radius: var(--radius-md); padding: 8px 16px; white-space: nowrap; cursor: pointer; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="report">
+
+  <div class="rpt-banner">
+    <p class="banner-title">We tested IMT North Scottsdale as a prospective renter in April 2026.</p>
+    <p class="banner-sub">This report reflects a live external leasing audit conducted by LeaseNOI. All data was collected by submitting a prospective renter inquiry and monitoring response behavior.</p>
+  </div>
+
+  <div class="rpt-header">
+    <div class="rpt-header-row">
+      <div>
+        <p class="uplabel">LeaseNOI Â· External Leasing Audit</p>
+        <h1>IMT North Scottsdale</h1>
+        <p class="meta">15509 N Scottsdale Rd, Scottsdale, AZ 85254 Â· 240 units Â· May 2026</p>
+      </div>
+      <div class="right">
+        <p class="uplabel">Market tested</p>
+        <p style="font-size:13px;font-weight:500;color:var(--text);margin:0;">Scottsdale, AZ</p>
+        <p style="font-size:12px;color:var(--text2);margin:3px 0 0;">13 properties benchmarked</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-banner">
+    <p class="uplabel">Benchmark tier â overall responsiveness score: 64</p>
+    <div class="tier-row">
+      <div class="tier-cell ">
+        <p class="tier-name"><span class="tier-dot"></span>Underperformer</p>
+        <p class="tier-range">Below 40</p>
+      </div>
+      <div class="tier-cell ">
+        <p class="tier-name"><span class="tier-dot"></span>Industry Average</p>
+        <p class="tier-range">40 â 54</p>
+      </div>
+      <div class="tier-cell active">
+        <p class="tier-name"><span class="tier-dot"></span>Above Average</p>
+        <p class="tier-range">55 â 84</p>
+      </div>
+      <div class="tier-cell ">
+        <p class="tier-name"><span class="tier-dot"></span>Best-in-class</p>
+        <p class="tier-range">85+</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rpt-section">
+    <p class="sec-label">Overall leasing performance</p>
+    <div class="score-grid">
+      <div class="sc">
+        <p class="sc-label">Market rank</p>
+        <p class="sc-val">#1 of 13</p>
+        <p class="sc-sub">Above 100% of comparable properties tested</p>
+      </div>
+      <div class="sc">
+        <p class="sc-label">Avg response time</p>
+        <p class="sc-val">1 min</p>
+        <p class="sc-sub">Market avg: 21 hrs</p>
+      </div>
+      <div class="sc">
+        <p class="sc-label">Best in market</p>
+        <p class="sc-val">1 min</p>
+        <p class="sc-sub">Top quartile: under 1 min</p>
+      </div>
+    </div>
+
+    <div class="key-finding">
+      <p class="key-finding-title">Ranked #1 But Sales Engine Costs Leases</p>
+      <p class="key-finding-text">IMT North Scottsdale scored 64/100 and ranked #1 out of 13 comparable properties tested in Scottsdale, AZ â a meaningful competitive advantage in speed and volume of outreach. However, the primary weakness is the Sales Engine, which scored only 20/40 (50%), driven by an automated first contact, a ~22-hour delay to the first personal reply, and six vague tour push attempts that never offered a specific date, time, or tour type. Closing this gap represents a direct path to improved lease conversion and an estimated $148,800 in annual NOI opportunity.</p>
+    </div>
+  </div>
+
+  <div class="rpt-section">
+    <p class="sec-label">Three-layer engine diagnosis</p>
+    <p class="section-note">Each leasing engine is scored independently. The weakest engine drives the largest NOI gap.</p>
+    <div class="engine-grid">
+      <div class="engine ">
+        <p class="engine-name">Speed Engine</p>
+        <p class="engine-score">35 / 40</p>
+        <p class="engine-diag">The Speed Engine scored 35/40 (87.5%), anchored by a 1-minute first response that places IMT North Scottsdale among the fastest responders in the comp set. However, the first personal human contact did not arrive until approximately 22 hours after inquiry, leaving a significant gap between the automated reply and a genuine sales conversation.</p>
+      </div>
+      <div class="engine weakness">
+        <p class="engine-name">Sales Engine</p>
+        <p class="engine-score">20 / 30</p>
+        <p class="engine-diag">The Sales Engine scored 20/40 (50%), making it the primary weakness of this audit. The first response was automated rather than personal, and the first human contact â a voicemail from Susan â arrived approximately 22 hours after inquiry. All 6 tour push mentions across the outreach sequence were vague, offering no specific date, time, or tour type to give the prospect a clear next step.</p>
+      </div>
+      <div class="engine ">
+        <p class="engine-name">Nurture Engine</p>
+        <p class="engine-score">9 / 30</p>
+        <p class="engine-diag">The Nurture Engine scored 9/20 (45%), with 5 total follow-ups sent â 4 automated and 1 personal â at an average cadence of 81.52 hours. The Score Followup Reply Engagement was 0/5, meaning the outreach sequence generated no prospect reply at any point, reflecting a passive nurture approach.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rpt-section">
+    <p class="sec-label">Response time â comp set</p>
+    <p class="section-note">13-property comp set in the North Scottsdale / Scottsdale, AZ Class A multifamily market.</p>
+    <div class="rank-row"><span class="rank-name top">Kota North Scottsdale</span><div class="rank-bg"><div class="rank-fill top" style="width:20%"></div></div><span class="rank-time top">1 min</span></div>
+    <div class="rank-row"><span class="rank-name ">The Beverly</span><div class="rank-bg"><div class="rank-fill " style="width:20%"></div></div><span class="rank-time ">1 min</span></div>
+    <div class="rank-row"><span class="rank-name ">San Portales</span><div class="rank-bg"><div class="rank-fill " style="width:20%"></div></div><span class="rank-time ">1 min</span></div>
+    <div class="rank-row"><span class="rank-name ">Camden Foothills Apartments</span><div class="rank-bg"><div class="rank-fill " style="width:20%"></div></div><span class="rank-time ">1 min</span></div>
+    <div class="rank-row"><span class="rank-name subject">IMT North Scottsdale</span><div class="rank-bg"><div class="rank-fill subject" style="width:20%"></div></div><span class="rank-time subject">1 min</span></div>
+  </div>
+
+  <div class="rpt-section">
+    <p class="sec-label">Where you're losing leases</p>
+    <p class="section-note">Specific gaps observed during testing. Each item is grounded in measured behavior, not inferred.</p>
+    <ul class="losing-list">
+      <li class="losing"><p class="losing-title">Automated First Contact Loses High-Intent Prospects</p><p class="losing-desc">The first response to the prospect inquiry was automated, and the first personal human contact â a voicemail from Susan â did not arrive until approximately 22 hours later. During the highest-intent window immediately after inquiry, no personal engagement was made, reducing the likelihood of conversion before the prospect engaged a competitor.</p></li>
+      <li class="losing"><p class="losing-title">Vague Tour Asks Fail to Convert</p><p class="losing-desc">All 6 tour push mentions across the follow-up sequence were vague, with language such as 'we would love to set aside a time for you to visit' and no specific date, time, or tour type ever offered. Without a direct and specific tour ask, prospects have no clear next step to act on.</p></li>
+      <li class="losing"><p class="losing-title">Slow Cadence and Zero Reply Engagement</p><p class="losing-desc">The follow-up sequence averaged 81.52 hours between contacts â approximately every 3.4 days â and earned a reply engagement score of 0/5, meaning no prospect response was generated at any point during the drip sequence. The cadence continued regardless of engagement, signaling a passive nurture approach that fails to re-activate undecided prospects.</p></li>
+    </ul>
+  </div>
+
+  <div class="rpt-section">
+    <p class="sec-label">Estimated NOI impact â 240 units</p>
+    <p class="section-note">Based on observed response gaps versus market benchmarks, this is the directional financial impact associated with the current performance gap.</p>
+    <div class="noi-grid">
+      <div class="noi-c"><p class="noi-label">Annual NOI opportunity</p><p class="noi-val">$148,800</p></div>
+      <div class="noi-c"><p class="noi-label">Per-unit lift</p><p class="noi-val">$620</p></div>
+      <div class="noi-c hl"><p class="noi-label hl">Asset value impact @ 6% cap</p><p class="noi-val hl">$2,480,000</p></div>
+    </div>
+    <p class="noi-note">Based on 240 units, $1,300 average rent, an 8% â 10% conversion lift on captured inquiries, and approximately $31,000 incremental NOI per converted unit. Asset value impact uses a 6% cap rate. Conservative, market-based assumptions.</p>
+  </div>
+
+  <div class="rpt-footer">
+    <div>
+      <p style="font-size:13px;font-weight:500;color:var(--text);margin:0 0 3px;">LeaseNOI Â· Continuous External Leasing Audit</p>
+      <p style="font-size:12px;color:var(--text2);margin:0;">Subscribers receive monthly trend tracking, comp alerts, and updated action plans.</p>
+    </div>
+    <a class="footer-cta" href="https://leasenoi.com">Start monthly tracking â</a>
+  </div>
+
+</div>
+</body>
+</html>
