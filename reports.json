@@ -1,7 +1,7 @@
 [
   {
     "property": "Aspendale Scottsdale",
-    "file": "aspendale-scottsdale.html",
+    "file": "aspendale_scottsdale.html",
     "market": "Scottsdale, AZ",
     "report_month": "May 2026",
     "score": 71,
@@ -12,7 +12,7 @@
   },
   {
     "property": "The Beverly",
-    "file": "the-beverly.html",
+    "file": "the_beverly.html",
     "market": "Scottsdale, AZ",
     "report_month": "May 2026",
     "score": 42,
