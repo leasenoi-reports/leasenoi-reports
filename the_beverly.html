@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeaseNOI Executive Leasing Snapshot | The Beverly</title>
+  <style>
+
+    :root {
+      --navy: #081B44;
+      --green: #19A34A;
+      --orange: #F58220;
+      --red: #D64545;
+      --blue: #3B82F6;
+      --ink: #172033;
+      --muted: #617087;
+      --line: #E3E9F2;
+      --soft: #F5F7FA;
+      --white: #FFFFFF;
+      --shadow: 0 14px 34px rgba(8, 27, 68, 0.11);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #dce4ee;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.4;
+    }
+    .page {
+      width: 1120px;
+      margin: 32px auto;
+      background: white;
+      box-shadow: 0 24px 80px rgba(8, 27, 68, 0.22);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--navy), #10306F);
+      color: white;
+      padding: 34px 44px;
+      display: grid;
+      grid-template-columns: 280px 1fr 230px;
+      gap: 24px;
+      align-items: center;
+    }
+    .logo-card {
+      background: #FFFFFF;
+      border-radius: 22px;
+      padding: 18px 22px;
+      width: 250px;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 34px rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.45);
+    }
+    .brand-logo {
+      display: block;
+      width: 215px;
+      max-height: 125px;
+      object-fit: contain;
+    }
+    .title-block { text-align: center; }
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #BFECCF;
+      margin-bottom: 8px;
+    }
+    h1 { margin: 0; font-size: 37px; line-height: 1.05; letter-spacing: -1.1px; }
+    .subtitle { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,.84); }
+    .property-meta { text-align: right; line-height: 1.6; font-size: 14px; font-weight: 700; }
+    .property-name { font-size: 20px; font-weight: 900; }
+    .content { padding: 32px 40px 40px; }
+    .panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    h2 { margin: 0 0 10px; color: var(--navy); font-size: 26px; letter-spacing: -.5px; }
+    p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+    .summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 20px; }
+    .summary-card { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: var(--soft); }
+    .summary-card h3 { margin: 0 0 8px; color: var(--navy); font-size: 17px; }
+    .summary-card p { margin: 0; font-size: 13px; }
+    .grid-2 { display: grid; grid-template-columns: 360px 1fr; gap: 22px; margin-bottom: 22px; }
+    .score-circle {
+      width: 160px; height: 160px; border-radius: 50%;
+      display: grid; place-items: center; margin: 10px auto 18px; position: relative;
+    }
+    .score-circle:before { content: ""; position: absolute; inset: 15px; border-radius: 50%; background: white; }
+    .score-inner { position: relative; text-align: center; }
+    .score-number { font-size: 42px; font-weight: 900; color: var(--navy); }
+    .score-label { font-size: 12px; text-transform: uppercase; font-weight: 900; color: var(--orange); }
+    .score-table { margin-top: 18px; }
+    .score-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .score-row span:last-child { font-weight: 900; color: var(--navy); }
+    .benchmark-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-top: 14px; }
+    .benchmark-card { background: var(--soft); border: 1px solid var(--line); border-radius: 18px; padding: 18px; min-height: 150px; }
+    .benchmark-title { font-size: 12px; font-weight: 900; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .benchmark-value { font-size: 28px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+    .pill {
+      display: inline-block; margin-top: 10px; padding: 6px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 900; text-transform: uppercase;
+      background: #FDECEC; color: var(--red);
+    }
+    .pill.green { background: #EAF7EF; color: #0f7a36; }
+    .pill.orange { background: #FFF2E5; color: #9A4A00; }
+    .lower-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .callout { margin-top: 18px; padding: 16px; border-radius: 16px; background: #FFF4E7; border: 1px solid #FFD6A6; color: #8A4D00; font-size: 13px; font-weight: 700; }
+    .observations { margin: 14px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.7; }
+    .revenue {
+      margin-top: 22px; background: linear-gradient(135deg, var(--navy), #10306F); border-radius: var(--radius);
+      color: white; padding: 28px; display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: center;
+    }
+    .revenue h2 { color: white; }
+    .revenue p { color: rgba(255,255,255,.82); }
+    .opp-box { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 20px; padding: 22px; text-align: center; }
+    .opp-value { font-size: 42px; font-weight: 900; margin: 10px 0; }
+    .footer-grid { margin-top: 22px; display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+    .cta {
+      background: linear-gradient(135deg, var(--green), #0E8339); border-radius: var(--radius); color: white;
+      display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; font-weight: 700; font-size: 20px;
+    }
+
+    .score-circle { background: conic-gradient(var(--orange) 0 42%, #E8EDF5 42% 100%); }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="logo-card">
+        <img class="brand-logo" src="assets/logo.png" alt="LeaseNOI">
+      </div>
+
+      <div class="title-block">
+        <div class="eyebrow">Executive Leasing System Snapshot</div>
+        <h1>Visibility Into Hidden NOI Leakage</h1>
+        <div class="subtitle">Our evaluation of leasing responsiveness and engagement</div>
+      </div>
+
+      <div class="property-meta">
+        <div class="property-name">The Beverly</div>
+        Scottsdale, AZ<br>
+        May 2026
+      </div>
+    </header>
+
+    <section class="content">
+      <section class="panel">
+        <div class="section-label">Executive Summary</div>
+        <h2>Severe breakdowns in human engagement created substantial leasing-system risk.</h2>
+        <p>Our evaluation of The Beverly’s leasing system revealed one of the weakest response patterns in the benchmark set. Human engagement did not occur for more than 20 days, significantly exceeding market response expectations. While automated lead capture existed, operational follow-through and conversion momentum appeared materially impaired.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card"><h3>Extremely Delayed Response</h3><p>First human response occurred after approximately 20.7 days — among the slowest observed in the benchmark set.</p></div><div class="summary-card"><h3>Weak Conversion Momentum</h3><p>Interactions lacked urgency and did not strongly advance toward tour scheduling.</p></div><div class="summary-card"><h3>Operational Inconsistency</h3><p>The leasing system appeared unable to consistently convert initial lead activity into meaningful engagement.</p></div><div class="summary-card"><h3>Potential Revenue Leakage</h3><p>Observed friction may contribute to slower leasing velocity and preventable NOI exposure.</p></div>
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <section class="panel">
+          <div class="section-label">Performance Score</div>
+          <h2>LeaseNOI Score</h2>
+          <div class="score-circle">
+            <div class="score-inner">
+              <div class="score-number">42</div>
+              <div class="score-label">of 100</div>
+            </div>
+          </div>
+          <div style="text-align:center;color:var(--muted);font-size:14px;">Overall leasing responsiveness ranked materially below benchmark median.</div>
+          <div class="score-table">
+            <div class="score-row"><span>Market Median Score</span><span>60</span></div><div class="score-row"><span>Top Quartile Threshold</span><span>71</span></div><div class="score-row"><span>Relative Position</span><span>Bottom Quartile</span></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-label">Key Performance Benchmarks</div>
+          <h2>Where the leasing system shows stress</h2>
+          <div class="benchmark-grid">
+            <div class="benchmark-card"><div class="benchmark-title">First Human Response</div><div class="benchmark-value">20.7 days</div><p>Market median: 1d 9h among responders.</p><div class="pill ">Bottom Quartile</div></div><div class="benchmark-card"><div class="benchmark-title">Human Engagement</div><div class="benchmark-value">Achieved</div><p>Human engagement eventually occurred, but materially outside normal leasing windows.</p><div class="pill ">Critically Delayed</div></div><div class="benchmark-card"><div class="benchmark-title">Tour Conversion Push</div><div class="benchmark-value">Weak</div><p>Minimal urgency or movement toward tour scheduling was observed.</p><div class="pill ">Below Median</div></div><div class="benchmark-card"><div class="benchmark-title">Follow-Up Persistence</div><div class="benchmark-value">Inconsistent</div><p>Follow-up cadence lacked the consistency seen in stronger operators.</p><div class="pill ">Operational Gap</div></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="lower-grid">
+        <section class="panel">
+          <div class="section-label">Market Benchmark</div>
+          <h2>Response Timing Context</h2>
+          <p>The Beverly’s first human response occurred materially outside the expected leasing-response window observed across the benchmark set.</p>
+          <div class="callout">14% of benchmarked properties never produced a human response within the 14-day observation window.</div>
+        </section>
+
+        <section class="panel">
+          <div class="section-label">Observed Failure Patterns</div>
+          <h2>What this suggests operationally</h2>
+          <ul class="observations">
+            <li>Human engagement delays likely create significant prospect drop-off risk.</li><li>Lead capture automation existed, but conversion execution appeared weak.</li><li>Tour conversion urgency and momentum were limited.</li><li>Operational responsiveness appears materially inconsistent.</li><li>Observed leasing friction may contribute to hidden occupancy and NOI leakage.</li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="revenue">
+        <div>
+          <div class="section-label" style="color:#BFECCF;">Potential Revenue Exposure</div>
+          <h2>Leasing friction can quietly compound into NOI leakage.</h2>
+          <p>Delayed human engagement, weak tour conversion, and conversion-path friction may reduce leasing velocity even when initial lead capture appears to be working.</p>
+          <p>The financial impact should be modeled as an opportunity range, not a guarantee.</p>
+        </div>
+        <div class="opp-box">
+          <div style="font-size:12px;text-transform:uppercase;font-weight:900;color:#BFECCF;">Illustrative Opportunity Range</div>
+          <div class="opp-value">$25K–$75K+</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.8);">Potential annual NOI opportunity from modest improvements in responsiveness and leasing conversion efficiency.</div>
+        </div>
+      </section>
+
+      <section class="footer-grid">
+        <section class="panel" style="margin:0;">
+          <div class="section-label">What’s Next?</div>
+          <h2>Understand where the leasing system breaks down.</h2>
+          <p>This snapshot reflects one inquiry through one channel during a limited observation window. A deeper leasing-system review can identify hidden operational gaps, channel failures, staffing inconsistencies, and conversion friction that impact occupancy and NOI.</p>
+        </section>
+        <div class="cta">Request the Complete Leasing System Review</div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
