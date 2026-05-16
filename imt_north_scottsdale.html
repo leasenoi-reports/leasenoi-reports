@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeaseNOI Executive Leasing Snapshot | IMT North Scottsdale</title>
+  <style>
+
+    :root {
+      --navy: #081B44;
+      --green: #19A34A;
+      --orange: #F58220;
+      --red: #D64545;
+      --ink: #172033;
+      --muted: #617087;
+      --line: #E3E9F2;
+      --soft: #F5F7FA;
+      --white: #FFFFFF;
+      --shadow: 0 14px 34px rgba(8, 27, 68, 0.11);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #dce4ee;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.4;
+    }
+
+    .page {
+      width: 1120px;
+      margin: 32px auto;
+      background: white;
+      box-shadow: 0 24px 80px rgba(8, 27, 68, 0.22);
+      overflow: hidden;
+    }
+
+    .header {
+      background: white;
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
+      padding: 30px 44px;
+      display: grid;
+      grid-template-columns: 260px 1fr 230px;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: block;
+      width: 220px;
+      max-height: 135px;
+      object-fit: contain;
+    }
+
+    .title-block { text-align: center; }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.05;
+      letter-spacing: -1.1px;
+      color: var(--navy);
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .property-meta {
+      text-align: right;
+      line-height: 1.6;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .property-name {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .content { padding: 32px 40px 40px; }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 26px;
+      letter-spacing: -.5px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .summary-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: var(--soft);
+    }
+
+    .summary-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 17px;
+    }
+
+    .summary-card p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .score-circle {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 10px auto 18px;
+      position: relative;
+      background: conic-gradient(var(--green) 0 84%, #E8EDF5 84% 100%);
+    }
+
+    .score-circle:before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .score-inner {
+      position: relative;
+      text-align: center;
+    }
+
+    .score-number {
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .score-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .score-table { margin-top: 18px; }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .score-row span:last-child {
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .benchmark-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .benchmark-card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 150px;
+    }
+
+    .benchmark-title {
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .benchmark-value {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .pill {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: #EAF7EF;
+      color: #0f7a36;
+    }
+
+    .pill.orange { background: #FFF2E5; color: #9A4A00; }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 16px;
+      background: #EAF7EF;
+      border: 1px solid #BFECCF;
+      color: #0f7a36;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .observations {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .revenue {
+      margin-top: 22px;
+      background: linear-gradient(135deg, var(--navy), #10306F);
+      border-radius: var(--radius);
+      color: white;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .revenue h2 { color: white; }
+    .revenue p { color: rgba(255,255,255,.82); }
+
+    .opp-box {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 20px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .opp-value {
+      font-size: 42px;
+      font-weight: 900;
+      margin: 10px 0;
+    }
+
+    .footer-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--green), #0E8339);
+      border-radius: var(--radius);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; width: 100%; box-shadow: none; }
+      @page { size: letter portrait; margin: 0; }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <img class="brand-logo" src="assets/logo.png" alt="LeaseNOI">
+      </div>
+
+      <div class="title-block">
+        <div class="eyebrow">Executive Leasing System Snapshot</div>
+        <h1>Visibility Into Hidden NOI Leakage</h1>
+        <div class="subtitle">Our evaluation of leasing responsiveness and engagement</div>
+      </div>
+
+      <div class="property-meta">
+        <div class="property-name">IMT North Scottsdale</div>
+        Scottsdale, AZ<br>
+        May 2026
+      </div>
+    </header>
+
+    <section class="content">
+      <section class="panel">
+        <div class="section-label">Executive Summary</div>
+        <h2>Best-in-set performance with strong speed, persistence, and multi-touch follow-up.</h2>
+        <p>
+          Our evaluation of IMT North Scottsdale’s leasing system showed the strongest overall performance in the current benchmark set, with an 84/100 LeaseNOI score and a #1 ranking. Initial response was fast, human engagement occurred within 29 minutes, and follow-up cadence was consistent across multiple touchpoints. The biggest remaining opportunity is channel expansion, particularly adding SMS/text engagement to an otherwise strong leasing response system.
+        </p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>Fast Human Response</h3>
+            <p>First human response occurred in 29 minutes, materially faster than the benchmark median.</p>
+          </div>
+          <div class="summary-card">
+            <h3>Strong Tour Push</h3>
+            <p>Tour conversion push scored 20/20, showing clear movement toward leasing action.</p>
+          </div>
+          <div class="summary-card">
+            <h3>Strong Follow-Up</h3>
+            <p>Follow-up persistence scored 15/15 with eight total touchpoints over the evaluation period.</p>
+          </div>
+          <div class="summary-card">
+            <h3>Remaining Opportunity</h3>
+            <p>Communication was strong through email and voice; SMS/text would further improve omnichannel coverage.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <section class="panel">
+          <div class="section-label">Performance Score</div>
+          <h2>LeaseNOI Score</h2>
+
+          <div class="score-circle">
+            <div class="score-inner">
+              <div class="score-number">84</div>
+              <div class="score-label">of 100</div>
+            </div>
+          </div>
+
+          <div class="score-table">
+            <div class="score-row"><span>Market Median Score</span><span>60</span></div>
+            <div class="score-row"><span>Top Quartile Threshold</span><span>71</span></div>
+            <div class="score-row"><span>Rank Position</span><span>#1 of 14</span></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-label">Key Performance Benchmarks</div>
+          <h2>Where the leasing system performed well</h2>
+
+          <div class="benchmark-grid">
+            <div class="benchmark-card">
+              <div class="benchmark-title">First Human Response</div>
+              <div class="benchmark-value">29 min</div>
+              <p>Market median: approximately 1d 10h among responders.</p>
+              <div class="pill">Top Performer</div>
+            </div>
+
+            <div class="benchmark-card">
+              <div class="benchmark-title">Initial Response</div>
+              <div class="benchmark-value">5 min</div>
+              <p>First automated response occurred quickly after inquiry submission.</p>
+              <div class="pill">Fast</div>
+            </div>
+
+            <div class="benchmark-card">
+              <div class="benchmark-title">Tour Conversion Push</div>
+              <div class="benchmark-value">20 / 20</div>
+              <p>Clear leasing momentum and strong movement toward tour scheduling.</p>
+              <div class="pill">Excellent</div>
+            </div>
+
+            <div class="benchmark-card">
+              <div class="benchmark-title">Omnichannel Engagement</div>
+              <div class="benchmark-value">10 / 15</div>
+              <p>Email and voice were used effectively; SMS/text remains a potential improvement.</p>
+              <div class="pill orange">Good, not complete</div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="lower-grid">
+        <section class="panel">
+          <div class="section-label">Market Benchmark</div>
+          <h2>Response Timing Context</h2>
+          <p>
+            IMT North Scottsdale materially outperformed the benchmark set on speed to human engagement. The property produced a first automated response in 5 minutes and a first human response in 29 minutes, compared with a market median human-response time of roughly 1 day and 10 hours among responding properties.
+          </p>
+          <div class="callout">This property ranked #1 of 14 in the current LeaseNOI benchmark set with an overall score of 84/100.</div>
+        </section>
+
+        <section class="panel">
+          <div class="section-label">Observed Performance Patterns</div>
+          <h2>What this suggests operationally</h2>
+          <ul class="observations">
+            <li>Initial lead capture and response speed were strong.</li>
+            <li>Human engagement occurred quickly and meaningfully.</li>
+            <li>Follow-up cadence was strong, with a healthy mix of automated and human touchpoints.</li>
+            <li>Email and voice channels were used effectively.</li>
+            <li>Adding SMS/text engagement could improve adaptive omnichannel performance.</li>
+          </ul>
+        </section>
+      </section>
+
+      <section class="revenue">
+        <div>
+          <div class="section-label" style="color:#BFECCF;">Potential Revenue Protection</div>
+          <h2>Strong leasing execution helps protect NOI.</h2>
+          <p>
+            IMT North Scottsdale demonstrates the kind of response discipline that can reduce prospect drop-off, support leasing velocity, and protect revenue capture.
+          </p>
+          <p>
+            The remaining opportunity is less about fixing a broken system and more about making a strong system more resilient across channels, timing windows, and prospect preferences.
+          </p>
+        </div>
+
+        <div class="opp-box">
+          <div style="font-size:12px;text-transform:uppercase;font-weight:900;color:#BFECCF;">Performance Position</div>
+          <div class="opp-value">#1 of 14</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.8);">Current benchmark leader in overall LeaseNOI scoring.</div>
+        </div>
+      </section>
+
+      <section class="footer-grid">
+        <section class="panel" style="margin:0;">
+          <div class="section-label">What’s Next?</div>
+          <h2>Preserve what works. Stress-test the system.</h2>
+          <p>
+            This snapshot reflects one inquiry through one channel during a limited observation window. A deeper leasing-system review can test whether this strong performance holds across weekends, evenings, phone, SMS, alternate personas, and additional lead sources.
+          </p>
+        </section>
+
+        <div class="cta">Request the Complete Leasing System Review</div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
