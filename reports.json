@@ -20,5 +20,16 @@
     "first_human_response": "20.7 days",
     "primary_issue": "Severe response delay",
     "status": "Published"
+  },
+   {
+    "property": "IMT North Scottsdale",
+    "file": "imt_north_scottsdale.html",
+    "market": "Scottsdale, AZ",
+    "report_month": "May 2026",
+    "score": 84,
+    "tier": "Top Quartile",
+    "first_human_response": "29 minutes",
+    "primary_issue": "Lack of Personlization"
+    "status": "Published"
   }
 ]
